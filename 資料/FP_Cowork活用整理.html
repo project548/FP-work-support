@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>FP業務 × Claude Cowork 活用整理</title>
+<style>
+  body { font-family: "Helvetica Neue", "Hiragino Sans", "Yu Gothic", sans-serif; max-width: 960px; margin: 40px auto; padding: 0 24px; color: #2c3e50; line-height: 1.7; background: #fafbfc; }
+  h1 { color: #1a365d; border-bottom: 4px solid #3182ce; padding-bottom: 12px; font-size: 28px; }
+  h2 { color: #1a365d; background: linear-gradient(90deg, #ebf8ff 0%, transparent 100%); border-left: 6px solid #3182ce; padding: 10px 14px; margin-top: 40px; font-size: 22px; }
+  h3 { color: #2c5282; border-bottom: 2px dotted #90cdf4; padding-bottom: 4px; font-size: 18px; }
+  .hero { background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 28px 32px; border-radius: 12px; margin: 24px 0 32px; box-shadow: 0 4px 12px rgba(49,130,206,0.25); }
+  .hero h2 { background: none; border: none; color: white; margin-top: 0; padding: 0; font-size: 24px; }
+  .hero p { margin: 8px 0 16px; opacity: 0.95; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 18px; }
+  .feature-card { background: white; color: #2c3e50; padding: 16px 18px; border-radius: 10px; border-left: 5px solid #f6ad55; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .feature-card .num { display: inline-block; background: #f6ad55; color: white; font-weight: bold; padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-bottom: 6px; }
+  .feature-card .title { font-weight: bold; font-size: 15px; color: #1a365d; margin-bottom: 4px; }
+  .feature-card .desc { font-size: 13px; color: #4a5568; line-height: 1.5; }
+  .flow-box { background: white; border: 2px solid #cbd5e0; border-radius: 10px; padding: 20px; font-family: "SF Mono", Consolas, monospace; font-size: 13px; white-space: pre; overflow-x: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-radius: 8px; overflow: hidden; }
+  th { background: #2c5282; color: white; padding: 12px; text-align: left; font-size: 14px; }
+  td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-size: 14px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7fafc; }
+  tr:hover td { background: #ebf8ff; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+  .badge-customer { background: #fef5e7; color: #c05621; }
+  .badge-fp { background: #e6fffa; color: #234e52; }
+  .badge-solve { background: #f0fff4; color: #22543d; }
+  .solution { background: white; border-radius: 12px; padding: 20px 24px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 5px solid #38a169; }
+  .solution h3 { color: #22543d; border: none; padding: 0; margin-top: 0; }
+  .solution .resolves { background: #f0fff4; color: #22543d; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: bold; display: inline-block; margin: 8px 0; }
+  .quote { background: #fffaf0; border-left: 4px solid #f6ad55; padding: 10px 16px; margin: 10px 0; font-style: italic; color: #744210; border-radius: 4px; }
+  .conclusion { background: linear-gradient(135deg, #38a169 0%, #2f855a 100%); color: white; padding: 24px 28px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(56,161,105,0.25); }
+  .conclusion h2 { background: none; border: none; color: white; padding: 0; margin-top: 0; }
+  .conclusion strong { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; }
+  .step { display: flex; align-items: flex-start; margin: 12px 0; }
+  .step-num { background: #3182ce; color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; margin-right: 14px; }
+  .step-text { flex: 1; padding-top: 4px; }
+  .highlight { background: #fef5e7; padding: 2px 6px; border-radius: 3px; font-weight: bold; color: #c05621; }
+</style>
+</head>
+<body>
+
+<h1>FP業務 × Claude Cowork 活用整理</h1>
+<p style="color:#718096; font-size:14px;">FPさんの業務課題を解消し、お客様への提案力を高めるためのCowork活用ガイド</p>
+
+<div class="hero">
+  <h2>★ FPさんの課題を解消する「こんな機能」</h2>
+  <p>もしこれらの機能が手元にあったら、業務時間が半分以下になります。<br>「いくらなら欲しいか」をぜひお聞かせください。</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="num">機能 01</span>
+      <div class="title">税金まるごと自動計算シミュレーター</div>
+      <div class="desc">所得税・住民税・国保・事業税を、条件を入れるだけで即計算。手計算からの解放。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 02</span>
+      <div class="title">iDeCo×退職金 受取最適化</div>
+      <div class="desc">一時金／年金／併用、何歳で受け取るか…全パターンの手取り比較を一発表示。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 03</span>
+      <div class="title">NISA取り崩しシナリオ比較</div>
+      <div class="desc">初回多め／均等／相場連動など、好きな取り崩し方で資産寿命を比較。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 04</span>
+      <div class="title">ふるさと納税 上限額シミュレーター</div>
+      <div class="desc">年収・家族構成・iDeCo・医療費控除まで反映した正確な上限を秒で算出。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 05</span>
+      <div class="title">教育資金・奨学金プランナー</div>
+      <div class="desc">いつ・いくら必要か、奨学金はいくら借りるべきかを家計から逆算。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 06</span>
+      <div class="title">個人事業 経費・確定申告サポート</div>
+      <div class="desc">領収書フォルダを渡すだけで、自動仕訳・科目別集計・節税額を提示。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 07</span>
+      <div class="title">県・市の助成金 自動チェック</div>
+      <div class="desc">お住まいの自治体の補助金・助成金を自動巡回して最新情報を通知。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 08</span>
+      <div class="title">お客様向け提案書 自動生成</div>
+      <div class="desc">シミュレーション結果から、グラフ付きWord/PDF提案書を一撃で作成。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 09</span>
+      <div class="title">「もしも」イレギュラーシナリオ対応</div>
+      <div class="desc">市販ソフトでは扱えない変則ケースも、自由に条件を組んで比較可能。</div>
+    </div>
+    <div class="feature-card">
+      <span class="num">機能 10</span>
+      <div class="title">お客様ごとの専用シミュレーター作成</div>
+      <div class="desc">条件が違う1人1人に、その場で専用Excelを作って渡せる。</div>
+    </div>
+  </div>
+</div>
+
+<h2>全体の構図</h2>
+<div class="flow-box">[一般のお客様] ── 相談 ──▶ [FPさん] ── 提案・設計 ──▶ [お客様]
+       │                       │
+       │                       └─ 計算・資料作成・シミュレーションが大変
+       │
+       └─ 「老後・税金・教育資金…何が正解かわからない」という不安</div>
+<p>Coworkは <span class="highlight">FPさんの「計算・資料作成・シミュレーション」の手間を一撃で消す道具</span> として使えます。<br>
+拡張機能（コネクタ）の追加は不要で、<strong>ローカルフォルダ連携 ＋ Excel生成 ＋ Word/PDFレポート生成</strong> の組み合わせで実現します。</p>
+
+<h2>1. 一般のお客様が抱えている悩み <span class="badge badge-customer">CUSTOMER</span></h2>
+<table>
+<tr><th style="width:40px;">#</th><th>お客様の悩み</th><th>知りたいこと</th></tr>
+<tr><td>A</td><td>老後の生活費が足りるか不安</td><td>あといくら貯めればいいか／何歳まで働けばいいか</td></tr>
+<tr><td>B</td><td>iDeCo・退職金の受取方法がわからない</td><td>一時金・年金・併用、どれが税金で得か</td></tr>
+<tr><td>C</td><td>NISAをどう取り崩せばいいか</td><td>一括／分割、初回多め／均等、どれが資産が長持ちするか</td></tr>
+<tr><td>D</td><td>ふるさと納税の上限がわからない</td><td>いくらまでなら自己負担2,000円で済むか</td></tr>
+<tr><td>E</td><td>子どもの教育資金・奨学金</td><td>奨学金はいくら借りるべきか／返済はどうなるか</td></tr>
+<tr><td>F</td><td>個人事業の経費・確定申告</td><td>経費に入れたら税金がいくら下がるか</td></tr>
+<tr><td>G</td><td>県・市の助成金・補助金</td><td>自分が使える制度があるか</td></tr>
+<tr><td>H</td><td>医療費・保険の見直し</td><td>入りすぎていないか／足りているか</td></tr>
+</table>
+
+<h2>2. FPさんが直面している課題 <span class="badge badge-fp">FP</span></h2>
+<table>
+<tr><th style="width:40px;">#</th><th>FPさんの課題</th><th>現状の手間</th></tr>
+<tr><td>①</td><td>税金計算が手計算で時間がかかる</td><td>iDeCo・退職金・所得税・住民税・国保…全部Excel手打ち</td></tr>
+<tr><td>②</td><td>「もしこうしたら？」のシナリオ比較が大変</td><td>パターン毎にExcelをコピーして作り直し</td></tr>
+<tr><td>③</td><td>お客様ごとに条件が違うのでテンプレが流用しにくい</td><td>自営業／会社員／年齢／家族構成で全部別</td></tr>
+<tr><td>④</td><td>領収書・通帳・源泉徴収票の整理</td><td>お客様から受け取った書類の入力・分類が地獄</td></tr>
+<tr><td>⑤</td><td>提案資料（Word/PDF）の作成に時間がかかる</td><td>グラフ・表・説明文を毎回作り直し</td></tr>
+<tr><td>⑥</td><td>制度（ふるさと納税・助成金）の最新情報のキャッチアップ</td><td>サイトを巡回するのが大変</td></tr>
+<tr><td>⑦</td><td>イレギュラー処理に対応する道具がない</td><td>市販ソフトは定型しか扱えない</td></tr>
+</table>
+
+<h2>3. Coworkでの解決手段 <span class="badge badge-solve">SOLUTION</span></h2>
+
+<div class="solution">
+  <h3>解決手段① シミュレーター付きExcelをその場で生成</h3>
+  <div class="resolves">解消する課題：① ② ③ ⑦</div>
+  <p>年齢・収入・iDeCo掛金・退職金見込み・家族構成などを入力するだけで、所得税・住民税・国保・事業税、iDeCo受取の退職所得控除との重複調整、NISA取り崩しの資産寿命、ふるさと納税の上限額をワンシートで自動計算するExcelをClaudeが作成。</p>
+  <div class="quote">「自営業・年収600万・iDeCo月23,000円・60歳で退職金1,500万円のケースで、iDeCoを65歳一時金 vs 年金10年 vs 併用で手取り比較するExcelを作って」</div>
+</div>
+
+<div class="solution">
+  <h3>解決手段② 領収書フォルダの自動仕訳・ダッシュボード化</h3>
+  <div class="resolves">解消する課題：④</div>
+  <p>お客様から受け取った領収書（写真・PDF）をフォルダに入れてCoworkに渡すだけで、勘定科目ごとに自動分類、月別・科目別の集計ダッシュボード、仕訳表の出力、「経費にできる／できない」のコメント付き。</p>
+  <div class="quote">「このフォルダの領収書を全部読み取って、月別・勘定科目別の仕訳表と集計ダッシュボードをExcelで作って」</div>
+</div>
+
+<div class="solution">
+  <h3>解決手段③ お客様向け提案書（Word / PDF）の自動生成</h3>
+  <div class="resolves">解消する課題：⑤</div>
+  <p>シミュレーション結果をもとに、お客様向けのわかりやすい提案レポートをWord・PDFで自動生成。グラフ・比較表・「あなたへのおすすめプラン」セクション付き。事務所ロゴやテンプレートにも対応可能。</p>
+  <div class="quote">「さっきのシミュレーション結果をもとに、お客様向けのA4縦3ページの提案書をWordで作って。タイトルは『○○様 老後資金プラン』」</div>
+</div>
+
+<div class="solution">
+  <h3>解決手段④ 制度・助成金の最新情報を自動チェック</h3>
+  <div class="resolves">解消する課題：⑥</div>
+  <p>スケジュールタスクで「毎週月曜にお住まいの市の補助金ページをチェックして変更があれば通知」。ふるさと納税ポータル・厚労省・国税庁などを巡回し、要点をまとめてレポート。</p>
+  <div class="quote">「○○県と○○市の住宅・教育・医療関連の助成金を一覧にして。毎月1日に更新もチェックして」</div>
+</div>
+
+<div class="solution">
+  <h3>解決手段⑤ イレギュラー処理シナリオの「もしも」比較</h3>
+  <div class="resolves">解消する課題：⑦（市販ソフトでは出来ない部分）</div>
+  <p>NISA取り崩しを「初回300万＋以降月10万」「全期間月15万」「相場下落時のみ取り崩し休止」など、好きな条件でシナリオを並べて、何歳まで資産が持つかを比較。iDeCo・退職金・年金の受取年齢をズラした場合の生涯手取り比較も可能。</p>
+  <div class="quote">「NISA2,000万円を、A：初回500万＋以降月10万、B：月15万均等、C：60〜70歳は月20万・以降月8万、で資産推移を比較するExcelを作って」</div>
+</div>
+
+<div class="conclusion">
+  <h2>4. 結論</h2>
+  <p><strong>ファイナンス系の拡張機能（コネクタ）は不要です。</strong></p>
+  <p>日本の税制・iDeCo・NISA・ふるさと納税は、Claude本体の知識 ＋ Excel/Word生成 ＋ ローカルフォルダ連携 ＋ スケジュール機能の組み合わせだけで対応できます。<br>米国系コネクタ（QuickBooks・Stripe等）は日本のFP業務には合いません。</p>
+</div>
+
+<h2>5. 事業化に向けた事前準備（先にやること）</h2>
+<p style="color:#718096; font-size:14px;">いきなり開発に入らず、まず「本当に欲しがられる商品か」を確かめます。</p>
+
+<div class="solution" style="border-top-color:#ed8936;">
+  <h3 style="color:#9c4221;">① ニーズ調査</h3>
+  <ul style="line-height:2;">
+    <li>そういう商品があったら、<strong>自分だったらいくら払う？</strong>を自問する</li>
+    <li>周囲4人くらいに「<strong>どう？いくらなら欲しい？</strong>」と聞く</li>
+    <li>ほかに<strong>どんな機能があったら嬉しいか</strong>聞く</li>
+    <li>それがあれば、<strong>週（または月）に何時間短縮できるか</strong>聞く</li>
+    <li>空いた時間で何をしたいか聞く（<span class="highlight">売上につなげる派</span> or <span class="highlight">休息を楽しむ派</span>）</li>
+  </ul>
+</div>
+
+<div class="solution" style="border-top-color:#ed8936;">
+  <h3 style="color:#9c4221;">② 商品コンセプトの具体化</h3>
+  <ul style="line-height:2;">
+    <li>「そういう商品」って<strong>どんな商品？</strong>を言語化する</li>
+    <li>本資料の上部「FPさんの課題を解消するこんな機能（10機能）」をたたき台にする</li>
+    <li>調査結果を踏まえて、刺さる機能だけに絞る／追加する</li>
+  </ul>
+</div>
+
+<div class="solution" style="border-top-color:#ed8936;">
+  <h3 style="color:#9c4221;">③ 販売戦略の想定（ふわっとでOK）</h3>
+  <ul style="line-height:2;">
+    <li>知人紹介〇人</li>
+    <li>知人紹介からのさらに紹介で広げる（レベニューシェア）</li>
+    <li>SNSアカウントで告知（親しい人向けストーリーズなど）</li>
+    <li>アカウントで勉強会を開いて集客</li>
+    <li>Instagram広告 など</li>
+  </ul>
+</div>
+
+<p style="margin:20px 0; padding:16px; background:#fffaf0; border-radius:8px; color:#9c4221; text-align:center; font-weight:bold;">
+  まずは、<span class="highlight">どんな商品を作るか</span>をここで固めましょう 😊
+</p>
+
+<h2>6. 商品が固まったあとの開発手順</h2>
+<p style="color:#718096; font-size:14px;">ニーズ調査と商品コンセプトが固まったら、Coworkで以下の順に作っていきます。</p>
+
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>試作シミュレーターを1つ作る</strong> ← まずこれ<br><span style="color:#718096; font-size:13px;">例：自営業者向け iDeCo×退職金 受取最適化シミュレーター</span></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>領収書フォルダの自動仕訳を試す</strong><br><span style="color:#718096; font-size:13px;">実際のお客様（または自分の）領収書フォルダで一度やってみる</span></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>提案書テンプレートを1つ作る</strong><br><span style="color:#718096; font-size:13px;">作ったシミュレーション結果を流し込めるWordテンプレート</span></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>スケジュール巡回を1つ設定</strong><br><span style="color:#718096; font-size:13px;">ふるさと納税の上限改定や、自治体助成金の更新通知</span></div></div>
+
+<p style="margin-top:30px; padding:16px; background:#ebf8ff; border-radius:8px; color:#2c5282; text-align:center;">この4つが揃えば、FPさんの業務時間は<span class="highlight">体感で半分以下</span>になります。</p>
+
+</body>
+</html>
